@@ -25,7 +25,8 @@ var CourseSchema = new Schema({
   datecreated:{
     type:Date,
     default: Date.now
-  }
+  },
+  content:Array
 });
 
 var InvolvementSchema = new Schema({

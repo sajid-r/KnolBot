@@ -43,6 +43,9 @@ module.exports = function(app) {
   app.route('/course/update').
   	post(controller.updateCourse);
 
+  app.route('/content/update').
+  	post(controller.insertContent);
+
   app.route('/invol/update').
   	post(controller.updateInvol);
 };

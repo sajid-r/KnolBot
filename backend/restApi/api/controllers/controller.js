@@ -136,6 +136,24 @@ exports.updateCourse = function(req,res) {
   });
 };
 
+exports.insertContent = function(req,res) {
+  console.log(req.body.body);
+  var queryid = JSON.parse(req.body.body);
+  var query = {"courseid":queryid.courseid};
+  console.log("Query = " + query + "queryid.courseid = " + queryid.courseid);
+  var desc = queryid.contentdesc;
+  var url = queryid.link;
+  var newcontent = {"contentdesc":desc,"link":url};
+  Course.update(query,{$push: {"content":newcontent}},{upsert:true},function(err,data){
+        if(err){
+                res.send(err);
+        }else{
+                res.json(data);
+        }
+});
+}
+
+
 exports.updateInvol = function(req,res) {
   console.log(req.body.body);
   var queryid = JSON.parse(req.body.body);
