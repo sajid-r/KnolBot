@@ -11,8 +11,8 @@
         </div> 
         <div id="sidebar-nav">   
           <ul>
-            <li class="active"><a href="#"><i class="fa fa-dashboard"></i> Stats</a></li>
-            <li><a href="#"><i class="fa fa-desktop"></i> Content</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Stats</a></li>
+            <li class="active"><a href="#"><i class="fa fa-desktop"></i> Content</a></li>
             <li><a href="#"><i class="fa fa-usd"></i> Participants</a></li>
             <li><a href="#"><i class="fa fa-pencil-square-o"></i> Description</a></li>
           </ul>
@@ -51,14 +51,43 @@
       <div class="content course-content-container">
           <div class="content-left">
               <h1>Add Content</h1>
-                <form class="cf" action="#">
-                    <div class="half left cf">
-                        <input type="text" id="input-desc" placeholder="Heading">
-                        <input type="text" id="input-link" placeholder="Add Link">
-                        <input type="text" id="input-img" placeholder="Upload Image">
-                    </div>
-                    <input type="submit" value="Submit" id="input-submit" onclick="addCourse_submit()">
-                </form>
+              <div class="post-header">
+                <div id="post-header-nav">   
+                  <ul>
+                    <li ><a href="#"><i class="fa fa-comment-o"></i> Text</a></li>
+                    <li class="post-active"><a href="#"><i class="fa fa-link"></i> Link</a></li>
+                    <li><a href="#"><i class="fa fa-picture-o"></i> Image</a></li>
+                    <li><a href="#"><i class="fa fa-question-circle-o"></i> Quiz</a></li>
+                  </ul>
+                </div>
+              </div>
+                    <form id="text-form" class="cf" action="#" hidden>
+                        <div class="half left cf">
+                            <textarea name="textarea" style="width:565px;height:150px;" placeholder="Add Text"></textarea>
+                        </div>
+                        <input type="submit" value="Submit" id="input-submit" onclick="addCourse_submit()">
+                    </form>
+                    <form id="link-form" class="cf" action="#" hidden>
+                        <div class="half left cf">
+                            <input type="text" id="input-link" placeholder="Add Link">
+                        </div>
+                        <input type="submit" value="Submit" id="input-submit" onclick="addCourse_submit()">
+                    </form>
+                    <form id="image-form" class="cf" action="#" hidden>
+                        <div class="half left cf">
+                            <textarea name="textarea" style="width:565px;height:150px;" placeholder="Add Text"></textarea>
+                            <input type="text" id="input-desc" placeholder="Upload Image">
+                        </div>
+                        <input type="submit" value="Submit" id="input-submit" onclick="addCourse_submit()">
+                    </form>
+                    <form id="quiz-form" class="cf" action="#">
+                        <div class="half left cf">
+                            <input type="text" id="input-desc" placeholder="Heading">
+                            <input type="text" id="input-link" placeholder="Add Link">
+                            <input type="text" id="input-img" placeholder="Upload Image">
+                        </div>
+                        <input type="submit" value="Submit" id="input-submit" onclick="addCourse_submit()">
+                    </form>
           </div>
 
           <div class="content-right">
