@@ -1,6 +1,6 @@
 $(document).ready(showContent);
 
-//var cardTemplate = $("#scrollable-template").detach();
+var cardTemplate = $("#scrollable-template").detach();
 
 function showContent(){
     populateContent();
@@ -55,9 +55,61 @@ function addCourse_submit() {
     }
 
     $.ajax(settings2).done(function (response) {
-      console.log(response);
     $(".scrollable-content").html="";
-        populateContent();
+        populateContent(); 
     });
     
+}
+
+function headerClicked(type){
+    switch(type){
+            
+        case "Text":
+            $('#text-form').attr("hidden",false);
+            $('#link-form').attr("hidden",true);
+            $('#image-form').attr("hidden",true);
+            $('#quiz-form').attr("hidden",true);
+            
+            $('#text-li').attr("class","post-active");
+            $('#link-li').attr("class","post-deactive");
+            $('#image-li').attr("class","post-deactive");
+            $('#quiz-li').attr("class","post-deactive");
+            break;
+            
+        case "Link":
+            $('#text-form').attr("hidden",true);
+            $('#link-form').attr("hidden",false);
+            $('#image-form').attr("hidden",true);
+            $('#quiz-form').attr("hidden",true);
+            
+            $('#text-li').attr("class","post-deactive");
+            $('#link-li').attr("class","post-active");
+            $('#image-li').attr("class","post-deactive");
+            $('#quiz-li').attr("class","post-deactive");
+            break;
+            
+        case "Image":
+            $('#text-form').attr("hidden",true);
+            $('#link-form').attr("hidden",true);
+            $('#image-form').attr("hidden",false);
+            $('#quiz-form').attr("hidden",true);
+            
+            $('#text-li').attr("class","post-deactive");
+            $('#link-li').attr("class","post-deactive");
+            $('#image-li').attr("class","post-active");
+            $('#quiz-li').attr("class","post-deactive");
+            break;
+            
+        case "Quiz":
+            $('#text-form').attr("hidden",true);
+            $('#link-form').attr("hidden",true);
+            $('#image-form').attr("hidden",true);
+            $('#quiz-form').attr("hidden",false);
+            
+            $('#text-li').attr("class","post-deactive");
+            $('#link-li').attr("class","post-deactive");
+            $('#image-li').attr("class","post-deactive");
+            $('#quiz-li').attr("class","post-active");
+            break;
+    }
 }

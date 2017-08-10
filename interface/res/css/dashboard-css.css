@@ -1,4 +1,4 @@
-@import "compass/css3";
+/*@import "compass/css3";*/
 
 @import url(https://fonts.googleapis.com/css?family=Merriweather);
 $red: #e74c3c;
@@ -15,21 +15,21 @@ h1 {
    @include text-shadow(1px 1px 0 rgba(white, 1));
 }
 
-form {
-   max-width: 600px;
-   text-align: center;
-    margin: 20px auto;}
+
   
   input, textarea {
-     border:0; outline:0;
+     outline:0;
      padding: 1em;
      @include border-radius(8px);
      display: block;
-     width: 100%;
-     margin-top: 1em;
+     width: 95%;
+      margin-left: 3%;
+     margin-top: 2em;
      font-family: 'Merriweather', sans-serif;
      @include box-shadow(0 1px 1px rgba(black, 0.1));
      resize: none;
+      border-radius: 5px;
+      border: solid 1px deepskyblue;
     
     &:focus {
        @include box-shadow(0 0px 2px rgba($red, 1)!important);
@@ -40,6 +40,10 @@ form {
      color: white; 
      background: coral;
      cursor: pointer;
+      width: 20%;
+      margin-top: 5%;
+      margin-bottom: 5%;
+      margin-left: 40%;
     
     &:hover {
        @include box-shadow(0 1px 1px 1px rgba(#aaa, 0.6)); 
@@ -376,6 +380,10 @@ div.user-image {
     height: 130px;
     display: block;
     overflow: auto;
+   -webkit-box-shadow: -1px 2px 19px -7px rgba(0,0,0,0.75);
+-moz-box-shadow: -1px 2px 19px -7px rgba(0,0,0,0.75);
+box-shadow: -1px 2px 19px -7px rgba(0,0,0,0.75);
+    
 }
 .scrollable-content{
     overflow: auto;
@@ -428,4 +436,50 @@ div.user-image {
     left: 42%;
     top:-35%;
     height: 92%;
+}
+#post-header-nav {
+  width: 88%;
+  height: 15%;
+  padding: 0;
+
+  border-right: 1px solid #E0E0E0;
+  overflow-y: hidden;
+    position: relative;
+    left:6%;
+    margin: 0;
+}
+#post-header-nav li{
+    float: left;
+    padding: 20px;
+    margin: 0;
+    height: 10%;
+}
+#post-header-nav ul{
+    padding-left: 0%;
+    padding-top: 2%;
+    margin: 0;
+}
+form {
+   max-width: 600px;
+   text-align: center;
+    margin: 0px auto;
+    background: white;
+    -webkit-box-shadow: -4px 4px 13px -2px rgba(0,0,0,0.75);
+-moz-box-shadow: -4px 4px 13px -2px rgba(0,0,0,0.75);
+box-shadow: -4px 4px 13px -2px rgba(0,0,0,0.75);
+}
+.post-active{
+    background: white;  
+}
+.post-active a{
+    font-weight: bold;  
+}
+
+#post-header-nav a:hover{
+    padding-bottom:4px;
+    border-bottom: 2px solid orange;  
+}
+
+#post-header-nav li a{
+    color:deepskyblue;
 }
