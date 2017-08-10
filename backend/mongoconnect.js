@@ -5,7 +5,6 @@ var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://localhost:27017/knolbot';
 
 var getUserDetails = function(url, userID){
-
 	MongoClient.connect(url, function(err, db) {
   		assert.equal(null, err);
   		findUserDetails(db, userID, function() {
@@ -22,7 +21,6 @@ var findUserDetails = function(db, userID, callback) {
          var user = {"userid":doc.userid, "username":doc.username, "age" : doc.age, "organization":doc.organization,
          	"courses_completed" :doc.courses_completed, "current_courses":doc.current_courses
      		}
-
       } else {
          callback();
       }
@@ -30,7 +28,6 @@ var findUserDetails = function(db, userID, callback) {
 };
 
 var getCourseDetails = function(url, courseID){
-
 	MongoClient.connect(url, function(err, db) {
   		assert.equal(null, err);
   		findCourseDetails(db, courseID, function() {
@@ -106,7 +103,4 @@ var findInvolvementDetailsByUser = function(db, userID, callback) {
          callback();
       }
    });
-
 };
-
-getInvolvementDetailsByUser(url,2);
