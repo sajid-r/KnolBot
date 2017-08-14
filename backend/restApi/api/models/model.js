@@ -33,7 +33,11 @@ var InvolvementSchema = new Schema({
   involvementno:Number,
   userid:Number,
   courseid:Number,
-  last_contentid:Number
+  messageQueue: Array,
+  subscriptiontime: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model('user', UserSchema);

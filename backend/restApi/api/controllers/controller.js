@@ -1,7 +1,7 @@
 'use strict';
-
-
-var mongoose = require('mongoose'),
+var tz=require('moment-timezone'),
+  moment = require('moment'),
+  mongoose = require('mongoose'),
   User = mongoose.model('user'),
   Course = mongoose.model('course'),
   Admin = mongoose.model('admin'),
@@ -51,6 +51,14 @@ exports.getInvol = function(req,res) {
   });
 };
 
+exports.getAllInvol = function(req,res) {
+  Invol.find({}, function(err,item){
+    if(err)
+      res.send(err);
+    res.json(item);
+  });
+};
+
                 //////////////////
                 //    CREATE    //
                 //////////////////
@@ -88,10 +96,27 @@ exports.postAdmin = function(req,res) {
 exports.postInvol = function(req,res) {
   console.log(req.body.body);
   var newinvol = new Invol(JSON.parse(req.body.body));
-  newinvol.save(function(err,data){
+  var courseid = newinvol.courseid;
+  var contentqueue = [];
+  Course.find({"courseid":courseid}, function(err,item){
     if(err)
-      res.send(err);
-    res.json(data);
+      console.log(err);
+    for(var i =0; i<item[0].content.length; i++)
+    {
+      var timediff = item[0].content[i].timediff; //in format : {'months':11,'days':30,'hours':23,'minutes':59}
+      var currenttime = moment();
+      var contenttime = currenttime.clone().tz('Asia/Kolkata').add(timediff.months,'M').add(timediff.days,'d').add(timediff.hours,'h')
+      .add(timediff.minutes,'m');
+      console.log("Current Time is: " + contenttime.toDate());
+      contentqueue.push({"contentno":item[0].content[i].contentno, "time":contenttime.toDate()});
+    }
+    newinvol.messageQueue = contentqueue;
+    newinvol.save(function(err,data)
+    {
+      if(err)
+        res.send(err);
+      res.json(data);
+    });
   });
 };
 

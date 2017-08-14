@@ -15,6 +15,9 @@ module.exports = function(app) {
   app.route('/invol/:id')
     .get(controller.getInvol);
 
+  app.route('/invol')
+    .get(controller.getAllInvol);
+
   app.route('/admin/:id')
     .get(controller.getAdmin);
 
@@ -30,7 +33,7 @@ module.exports = function(app) {
   	post(controller.postCourse);
 
   app.route('/invol/create').
-  	post(controller.postInvol);
+  	post(controller.postInvol); //{"involvementno":10, "courseid":1,"userid":2}
 
 
 
