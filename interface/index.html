@@ -2,6 +2,7 @@
     <head>
         <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="./res/css/main.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     </head>
     <body>
         
@@ -33,7 +34,7 @@
                         <div class="card-header">
                         </div>
                         <div class="card-content">
-                            <a href="index.html"><i class="fa fa-plus-square-o fa-5x" aria-hidden="true"></i></a>
+                            <a href="#" onclick="viewModal()"><i class="fa fa-plus-square-o fa-5x" aria-hidden="true"></i></a>
                             <p>Add a Course</p>
                         </div>
                     </div>
@@ -59,7 +60,27 @@
                 </a>  
             </div>
         </div>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-	   <script type="text/javascript" src="./res/js/api.js"></script>
+       
+        <div id="myModal" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <span class="close">&times;</span>
+              Add a Course
+                <form id="quiz-form" class="cf" action="#">
+                    <div class="half left cf">
+                        <input type="text" id="input-desc" placeholder="Course Name">
+                        <textarea name="textarea" style="width:470px;height:150px;" placeholder="Add Description"></textarea>
+                    </div>
+                    <input type="submit" value="Submit" id="input-submit" onclick="addCourse_submit()">
+                </form>
+          </div>
+        </div>
+        
+        
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+     <script type="text/javascript" src="./res/js/api.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script>
     </body>
 </html>

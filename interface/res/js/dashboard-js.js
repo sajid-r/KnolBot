@@ -113,3 +113,4 @@ function headerClicked(type){
             break;
     }
 }
+

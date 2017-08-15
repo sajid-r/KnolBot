@@ -210,7 +210,128 @@
     box-shadow: 0 12px 22px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
     transform: scale3d(1.006, 1.006, 1);
 }
-.desc-form{
-    width:50%;
-    height: 70%;
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 500px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+@import url(https://fonts.googleapis.com/css?family=Merriweather);
+$red: #e74c3c;
+
+*, 
+*:before, 
+*:after {
+   @include box-sizing(border-box); 
+}
+
+h1 {
+   text-align: center;
+   color: #a8a8a8;
+   @include text-shadow(1px 1px 0 rgba(white, 1));
+}
+
+
+  
+  input, textarea {
+     outline:0;
+     padding: 1em;
+     @include border-radius(8px);
+     display: block;
+     width: 95%;
+      margin-left: 3%;
+     margin-top: 2em;
+     font-family: 'Merriweather', sans-serif;
+     @include box-shadow(0 1px 1px rgba(black, 0.1));
+     resize: none;
+      border-radius: 5px;
+      border: solid 1px deepskyblue;
+    
+    &:focus {
+       @include box-shadow(0 0px 2px rgba($red, 1)!important);
+    }
+  }
+  
+  #input-submit {
+     color: white; 
+     background: coral;
+     cursor: pointer;
+      width: 20%;
+      margin-top: 5%;
+      margin-bottom: 5%;
+      margin-left: 40%;
+    
+    &:hover {
+       @include box-shadow(0 1px 1px 1px rgba(#aaa, 0.6)); 
+    }
+  }
+  
+  textarea {
+      height: 126px;
+  }
+}
+
+
+.half {
+  float: left;
+  width: 48%;
+  margin-bottom: 1em;
+}
+
+.right { width: 50%; }
+
+.left {
+     margin-right: 2%; 
+}
+
+
+@media (max-width: 480px) {
+  .half {
+     width: 100%; 
+     float: none;
+     margin-bottom: 0; 
+  }
+}
+
+
+/* Clearfix */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
 }
