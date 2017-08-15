@@ -1,22 +1,41 @@
 var restify = require('restify');
 var request = require('request');
+var moment = require('moment');
+var cron = require('node-cron');
+ 
+cron.schedule('*/1 * * * *', function(){
+  console.log('running a task every thirty minutes');
+  request('http://localhost:3000/invol', function (error, response, body) 
+    {
+        var invol=JSON.parse(body);
+        for(var i=0;i<invol.length;i++) //run over all involvements
+        {
+        	
+        	if(invol[i].messageQueue[0]!=undefined)
+        	{
+        		var msgTime = moment(invol[i].messageQueue[0].time);
+	        	var currenttime = moment();
+	        	if(msgTime.isSameOrBefore(currenttime))
+	        	{
+	        		console.log('Invol No.' + invol[i].involvementno);
+	        		var contentid = invol[i].messageQueue[0].contentno;
+	        		var courseid = invol[i].courseid;
+	        		var userid = invol[i].userid;
+	        		//Post to contentno to userid
 
-request('http://localhost:3000/course', function (error, response, body) 
-                {
-                    var course=JSON.parse(body);
-                    var cards = [];
-                    for (var i=0;i<course.length;i++)
-                    {
-                        cards.push
-                        (   new builder.HeroCard(session)
-                            .title(course[i].coursetitle)
-                            .subtitle('Description')
-                            .text(course[i].coursedesc)
-                            .images([builder.CardImage.create(session, '/home/knolly/Documents/Training/Projects/botinit/api/core-CreateNewConversation/res/1.png')])
-                        );
-                    }
-                    var reply = new builder.Message(session)
-                    .attachmentLayout(builder.AttachmentLayout.carousel)
-                    .attachments(cards);
-                    session.send(reply);  
-                });
+
+	        		invol[i].messageQueue.shift(1); //deleted the sent content from queue
+	        		var stringified = JSON.stringify(invol[i]);
+	        		request.post({
+					  headers: {'content-type' : 'application/x-www-form-urlencoded'},
+					  url:     'http://localhost:3000/invol/update',
+					  body:    "body="+stringified
+					}, function(error, response, body){
+					  console.log("\n");
+					});
+	        	}
+        	}
+        	
+        }  
+	});
+});
