@@ -76,10 +76,15 @@ exports.postUser = function(req,res) {
 exports.postCourse = function(req,res) {
   console.log(req.body.body);
   var newcourse = new Course(JSON.parse(req.body.body));
-  newcourse.save(function(err,data){
-    if(err)
-      res.send(err);
-    res.json(data);
+  Course.find({}, function(err,item){
+      var courses = item;
+      var lastid = courses[courses.length-1].courseid;
+      newcourse.courseid = lastid+1;
+      newcourse.save(function(err,data){
+      if(err)
+        res.send(err);
+      res.json(data);
+    });
   });
 };
 

@@ -8,7 +8,7 @@ function showCourses(){
 
 var populateCourses = function() {
     
-    var settings = {
+var settings = {
   "async": true,
   "crossDomain": true,
   "url": "http://localhost:3000/course",
@@ -54,4 +54,32 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+}
+
+function addNewCourse_submit(){
+    var coursename = $("#input-desc").val();
+    var description = $("#course-desc").val();
+    
+    var newCourse = {"courseid":0, "coursetitle":coursename, "coursedesc":description};
+    
+    var settings3 = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://localhost:3000/course/create",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded",
+        "cache-control": "no-cache",
+        "postman-token": "47520e8f-a7bd-2549-9e84-9996f0019569"
+      },
+      "data": {
+          "body":JSON.stringify(newCourse)
+      }
+    }
+
+    $.ajax(settings3).done(function (response) {
+        console.log("done");
+    });
+    
+    window.location.reload(true);
 }
