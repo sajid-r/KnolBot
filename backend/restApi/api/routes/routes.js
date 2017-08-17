@@ -1,4 +1,11 @@
 'use strict';
+require('handlebars/runtime');
+var handlebars = require('handlebars');
+var fs = require('fs');
+var express = require("express");
+var app = express();
+
+
 module.exports = function(app) {
   var controller = require('../controllers/controller');
 
@@ -51,4 +58,17 @@ module.exports = function(app) {
 
   app.route('/invol/update').
   	post(controller.updateInvol);
+
+                //////////////////
+                //    RENDERS   //
+                //////////////////
+
+  app.get("/", function(req, res){
+    res.sendfile("../../../../interface/index.html");
+  });
+
+
+  app.get("/dashboard", function(req, res){
+    res.sendfile("../../../../interface/dashboard.html");
+  });
 };

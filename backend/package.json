@@ -5,16 +5,17 @@
   "main": "mongoconnect.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-  "dev": "nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "author": "sajid",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "ejs": "^2.5.7",
     "express": "^4.15.3",
     "mongodb": "^2.2.30"
   },
-	"devDependencies":{
-	"nodemon":"1.10.0"
-}
+  "devDependencies": {
+    "nodemon": "1.10.0"
+  }
 }

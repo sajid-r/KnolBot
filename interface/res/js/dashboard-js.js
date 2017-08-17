@@ -1,8 +1,14 @@
 $(document).ready(showContent);
 
+var courseidReceived;
+
+
 var cardTemplate = $("#scrollable-template").detach();
 
 function showContent(){
+    courseidReceived = window.localStorage.getItem('objectToPass');
+    window.localStorage.removeItem( 'objectToPass' ); // Clear the localStorage
+    //alert(courseidReceived);
     populateContent();
 }
 
@@ -11,7 +17,7 @@ var populateContent = function() {
  var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "http://localhost:3000/course/1",
+  "url": "http://localhost:3000/course/" + courseidReceived,
   "method": "GET",
   "headers": {
     "cache-control": "no-cache",

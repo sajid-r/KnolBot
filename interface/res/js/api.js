@@ -1,8 +1,11 @@
-$(document).ready(showCourses);
+$(document).ready(docReadyStuffs);
 
 var cardTemplate = $("#course-card-template").detach();
 
-function showCourses(){
+
+
+
+function docReadyStuffs(){
     populateCourses();
 }
 
@@ -29,6 +32,7 @@ $.ajax(settings).done(function (response) {
             curItem.find(".course-name").html(response[i].coursetitle);
             curItem.find(".course-desc").html(response[i].coursedesc);
             curItem.find(".course-card").attr("num",response[i].courseid);
+            curItem.attr("onclick","goToCourse(" + response[i].courseid + ")");
             $(".card-container").append(curItem.clone());  
         }
 });
@@ -82,4 +86,12 @@ function addNewCourse_submit(){
     });
     
     window.location.reload(true);
+}
+
+
+function goToCourse(cid){
+    var courseid = cid;
+    window.localStorage.setItem( 'objectToPass', courseid );
+    //alert(courseid);
+    window.location.href = "http://localhost:8080/dashboard";
 }
