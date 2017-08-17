@@ -6,27 +6,26 @@ var courseidReceived;
 var cardTemplate = $("#scrollable-template").detach();
 
 function showContent(){
-    courseidReceived = window.localStorage.getItem('objectToPass');
-    window.localStorage.removeItem( 'objectToPass' ); // Clear the localStorage
-    //alert(courseidReceived);
     populateContent();
 }
 
 var populateContent = function() {
-    
+    courseidReceived = window.localStorage.getItem('objectToPass');
+    //window.localStorage.removeItem( 'objectToPass' ); // Clear the localStorage
+    $(".scrollable-content").html="";
  var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "http://localhost:3000/course/" + courseidReceived,
-  "method": "GET",
-  "headers": {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost:3000/course/" + courseidReceived,
+    "method": "GET",
+    "headers": {
     "cache-control": "no-cache",
     "postman-token": "7db05a42-996e-d4ce-22a5-1f780fe6e89e"
   }
 }
 
 $.ajax(settings).done(function (response) {
-  console.log(response);
+  //console.log(response);
     for(var i=0; i<response[0].content.length; i++)
         {
             var curItem = cardTemplate.clone();
@@ -38,19 +37,73 @@ $.ajax(settings).done(function (response) {
 });
 }
 
-function addCourse_submit() {
-    var desc = document.getElementById("input-desc").value;
-    var link = document.getElementById("input-link").value;
-    alert(desc+link);
-    document.getElementsByClassName("cf")[0].submit(); //form submission
-    var newcontent ={"courseid":1,"contentdesc":desc,"link":link};
-    console.log(newcontent);
+function addCourse_submit(obj) {
+    var submitid = $(obj).attr("id");
+    var text="", img="", link="";
+    var M="00",m="00",d="00",h="00";
+    var timediff;
+    switch(submitid){
+            case("text-submit"):
+                text = $(obj).siblings("div.half").children(".text-field")[0].value;
+                alert("Text Entered: " + text);
+                document.getElementsByClassName("cf")[0].submit(); //form submission
+                alert($(obj).siblings("div.timediff").find('#minutes').val());
+                timediff = {
+                    "months":$(obj).siblings("div.timediff").find('#months').val(),
+                    "days":$(obj).siblings("div.timediff").find('#days').val(),
+                    "hours":$(obj).siblings("div.timediff").find('#hours').val(),
+                    "minutes":$(obj).siblings("div.timediff").find('#minutes').val
+                };
+                
+                break;
+            
+            case("link-submit"):
+                link= $(obj).siblings("div.half").children(".link-field")[0].value;
+                document.getElementsByClassName("cf")[1].submit(); //form submission
+                timediff = {
+                    "months":$(obj).siblings("div.timediff").find('#months').val(),
+                    "days":$(obj).siblings("div.timediff").find('#days').val(),
+                    "hours":$(obj).siblings("div.timediff").find('#hours').val(),
+                    "minutes":$(obj).siblings("div.timediff").find('#minutes').val
+                };
+                break;
+            
+            case("image-submit"):
+                text = $(obj).siblings("div.half").children(".text-field")[0].value;
+                img = $(obj).siblings("div.half").children(".image-field")[0].value;
+                document.getElementsByClassName("cf")[2].submit(); //form submission
+                timediff = {
+                    "months":$(obj).siblings("div.timediff").find('#months').val(),
+                    "days":$(obj).siblings("div.timediff").find('#days').val(),
+                    "hours":$(obj).siblings("div.timediff").find('#hours').val(),
+                    "minutes":$(obj).siblings("div.timediff").find('#minutes').val
+                };
+                break;
+            
+            case("quiz-submit"):
+                text = $(obj).siblings("div.half").children(".text-field")[0].value;
+                img = $(obj).siblings("div.half").children(".image-field")[0].value;
+                link= $(obj).siblings("div.half").children(".link-field")[0].value;
+                document.getElementsByClassName("cf")[3].submit(); //form submission
+                timediff = {
+                    "months":$(obj).siblings("div.timediff").find('#months').val(),
+                    "days":$(obj).siblings("div.timediff").find('#days').val(),
+                    "hours":$(obj).siblings("div.timediff").find('#hours').val(),
+                    "minutes":$(obj).siblings("div.timediff").find('#minutes').val
+                };
+                break;
+    }
+    //var desc = document.getElementById("input-desc").value;
+    //var link = document.getElementById("input-link").value;
+    
+    var newcontent ={"courseid":courseidReceived,"contentdesc":text,"link":link, "imageurl":img, "timediff":timediff};
+    alert("Months in Newcontent = " + newcontent.timediff.months);
     var settings2 = {
-      "async": true,
-      "crossDomain": true,
-      "url": "http://localhost:3000/content/update",
-      "method": "POST",
-      "headers": {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:3000/content/update",
+        "method": "POST",
+        "headers": {
         "content-type": "application/x-www-form-urlencoded",
         "cache-control": "no-cache",
         "postman-token": "42af6581-3ab2-712b-9270-92f8631edcee"
@@ -62,9 +115,10 @@ function addCourse_submit() {
 
     $.ajax(settings2).done(function (response) {
     $(".scrollable-content").html="";
-        populateContent(); 
-    });
-    
+        window.localStorage.setItem( 'objectToPass', courseidReceived);
+        //window.location.href = "http://localhost:8080/dashboard";
+        populateContent();
+    }); 
 }
 
 function headerClicked(type){
