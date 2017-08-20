@@ -52,11 +52,39 @@ exports.getInvol = function(req,res) {
   });
 };
 
+exports.getInvolUsingObjID = function(req,res) {
+  Invol.find({'_id':req.params.id}, function(err,item){
+    if(err)
+      res.send(err);
+    res.json(item);
+  });
+};
+
+exports.getInvolUsingUserID = function(req,res) {
+  Invol.find({"userid":req.params.userid}, function(err,item){
+    if(err)
+      res.send(err);
+    res.json(item);
+  });
+};
+
 exports.getAllInvol = function(req,res) {
   Invol.find({}, function(err,item){
     if(err)
       res.send(err);
     res.json(item);
+  });
+};
+
+exports.getContent = function(req,res) {
+  Course.find({"courseid":req.params.courseid}, function(err,item){
+    if(err)
+      res.send(err);
+    for(var i=0;i<item[0].content.length;i++){
+      if(req.params.contentid == JSON.stringify(item[0].content[i].contentno)){
+        res.send(item[0].content[i]);
+      }
+    }
   });
 };
 
@@ -189,6 +217,18 @@ exports.updateInvol = function(req,res) {
   console.log(req.body.body);
   var queryid = JSON.parse(req.body.body);
   var query = {'involvementno':queryid.involvementno};
+  var newobj = JSON.parse(req.body.body);
+  Invol.findOneAndUpdate(query, newobj, {upsert:true},function(err,data){
+    if(err)
+      res.send(err);
+    res.json(data);
+  });
+};
+
+exports.updateInvolUsingObjID = function(req,res) {
+  console.log(req.body.body);
+  var queryid = JSON.parse(req.body.body);
+  var query = {'_id':queryid._id};
   var newobj = JSON.parse(req.body.body);
   Invol.findOneAndUpdate(query, newobj, {upsert:true},function(err,data){
     if(err)

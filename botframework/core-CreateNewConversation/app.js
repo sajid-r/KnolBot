@@ -96,60 +96,97 @@ bot.dialog('survey', [
         }
     },
     function (session, results) {
+        
         session.userData.courses.push(results.response);
         var obj = JSON.parse(results.response.substring(10));
         builder.Prompts.text(session, 'Congratulations you have registered for ' + obj.title);
         builder.Prompts.text(session, 'You will start receiving contents soon...');
-        var options = { method: 'POST',
+        
+        var options = 
+        { method: 'POST',
           url: 'http://localhost:3000/invol/create',
           headers: 
-           { 'postman-token': '7446ba9b-7663-924e-5ae3-f97a5d580eb1',
+            { 'postman-token': '7446ba9b-7663-924e-5ae3-f97a5d580eb1',
              'cache-control': 'no-cache',
-             'content-type': 'application/x-www-form-urlencoded' },
-          form: { body: '{"courseid": '+obj.id+', "userid": '+randomid+'}' } };
+             'content-type': 'application/x-www-form-urlencoded' 
+            },
+          form: { body: '{"courseid": '+obj.id+', "userid": '+randomid+'}' } 
+        };
 
-        request(options, function (error, response, body) {
+        request(options, function (error, response, body) 
+        {
           if (error) throw new Error(error);
           console.log(body);
         });
 
-    },
-    function (session, results) {
         cron.schedule('*/1 * * * *', function(){
           console.log('running a task every minute');
-          request(apiURL+'/invol/'+randomid, function (error, response, body) 
+          //search for involvement details of the user
+          request(apiURL+'/invol/user/'+randomid, function (error, response, body) 
             {
                 var invol=JSON.parse(body);
                 for(var i=0;i<invol.length;i++) //run over all involvements
                 {
-                    
+                    var currentinvol = invol[i];
+                    console.log("currentinvol = " + currentinvol);
+                    //if messagequeue exists
                     if(invol[i].messageQueue[0]!=undefined)
                     {
                         var msgTime = moment(invol[i].messageQueue[0].time);
                         var currenttime = moment();
                         if(msgTime.isSameOrBefore(currenttime))
                         {
-                            console.log('Invol No.' + invol[i].involvementno);
+                            console.log('contentid: ' + invol[i].messageQueue[0].contentno + " userid: " + invol[i].userid);
                             var contentid = invol[i].messageQueue[0].contentno;
                             var courseid = invol[i].courseid;
-                            var userid = invol[i].userid;
+                            var objid = invol[i]._id;
+                            console.log("objid = " + invol[i]._id);
                             //Post to contentno to userid
+                            
+                            //search for the content
+                            request(apiURL+'/content/'+courseid+'/'+contentid, function (error, response, body)
+                            {
+                                var response = JSON.parse(body);
+                                var contentdesc = response.contentdesc;
+                                var link = "", doc="";
+                                if(response.link != undefined)
+                                    link = response.link;
+                                if(response.docurl != undefined)
+                                    doc = response.docurl;
 
+                                console.log("Before deleting: " + currentinvol.messageQueue);
+                                currentinvol.messageQueue.shift(1); //deleted the sent content from queue
+                                var stringified = JSON.stringify(currentinvol);
+                                console.log("After deleting: " + currentinvol.messageQueue);
 
-                            invol[i].messageQueue.shift(1); //deleted the sent content from queue
-                            var stringified = JSON.stringify(invol[i]);
-                            request.post({
-                              headers: {'content-type' : 'application/x-www-form-urlencoded'},
-                              url:     apiURL+'/invol/update',
-                              body:    "body="+stringified
-                            }, function(error, response, body){
-                              console.log("\n");
+                                var options2 = 
+                                { method: 'POST',
+                                  url: apiURL+'/invol/obj/' + objid,
+                                  headers: 
+                                   { 'postman-token': '1e0c16f5-f86e-791b-57be-cf064ccbe1d8',
+                                     'cache-control': 'no-cache',
+                                     'content-type': 'application/x-www-form-urlencoded' },
+                                  form: { body:  stringified } 
+                                };
+
+                                request(options2, function (error, response, body) {
+                                  if (error) throw new Error(error);
+
+                                  console.log(body);
+                                });
+
+                                //send to chatbot
+                                builder.Prompts.text(session, contentdesc + ' ' + link + ' ' + doc);
                             });
                         }
+                    }
+                    else{
+                        builder.Prompts.text(session, "That is the end of the course.");
                     }
                     
                 }  
             });
         });
+
     }
 ]);

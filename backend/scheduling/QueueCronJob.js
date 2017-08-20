@@ -2,10 +2,11 @@ var restify = require('restify');
 var request = require('request');
 var moment = require('moment');
 var cron = require('node-cron');
- 
+
+var apiURL = "http://localhost:3000";
 cron.schedule('*/1 * * * *', function(){
-  console.log('running a task every thirty minutes');
-  request('http://localhost:3000/invol', function (error, response, body) 
+  console.log('running a task every minute');
+  request(apiURL+'/invol', function (error, response, body) 
     {
         var invol=JSON.parse(body);
         for(var i=0;i<invol.length;i++) //run over all involvements
@@ -28,7 +29,7 @@ cron.schedule('*/1 * * * *', function(){
 	        		var stringified = JSON.stringify(invol[i]);
 	        		request.post({
 					  headers: {'content-type' : 'application/x-www-form-urlencoded'},
-					  url:     'http://localhost:3000/invol/update',
+					  url:     apiURL+'/invol/update',
 					  body:    "body="+stringified
 					}, function(error, response, body){
 					  console.log("\n");

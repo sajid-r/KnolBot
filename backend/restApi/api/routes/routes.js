@@ -25,8 +25,19 @@ module.exports = function(app) {
   app.route('/invol')
     .get(controller.getAllInvol);
 
+  app.route('/invol/user/:userid')
+    .get(controller.getInvolUsingUserID);
+
   app.route('/admin/:id')
     .get(controller.getAdmin);
+
+  app.route('/content/:courseid/:contentid')
+    .get(controller.getContent);
+
+ app.route('/invol/obj/:id')
+    .get(controller.getInvolUsingObjID);
+
+
 
 
 
@@ -44,6 +55,9 @@ module.exports = function(app) {
 
 
 
+
+
+
   app.route('/user/update').
   	post(controller.updateUser);
 
@@ -58,6 +72,9 @@ module.exports = function(app) {
 
   app.route('/invol/update').
   	post(controller.updateInvol);
+
+  app.route('/invol/obj/:id').
+    post(controller.updateInvolUsingObjID);
 
                 //////////////////
                 //    RENDERS   //
