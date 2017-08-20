@@ -4,7 +4,12 @@ require('dotenv-extended').load();
 var builder = require('botbuilder');
 var restify = require('restify');
 var request = require('request');
+var moment = require('moment');
+var cron = require('node-cron');
 
+const apiURL = "http://localhost:3000";
+var randomid = Math.floor((Math.random() * 9999999) + 1000000);
+commands = ['/courses','enrol']
 // Setup Restify Server
 var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3979, function () {
@@ -23,9 +28,9 @@ var bot = new builder.UniversalBot(connector, function (session) {
     // store user's address
     var address = session.message.address;
     userStore.push(address);
-
+    session.userData.courses = [];
     // end current dialog
-    session.endDialog('You\'ve been invited to a survey! It will start in a few seconds...');
+    session.endDialog('Hi welcome to KnolBot :)');
 });
 
 // Every 5 seconds, check for new registered users and start a new dialog
@@ -65,7 +70,7 @@ bot.dialog('survey', [
         switch(res){
             case("/courses"):
                 builder.Prompts.text(session, 'Hi ' + session.userData.name + ', These are the available courses: ');
-                request('http://localhost:3000/course', function (error, response, body) 
+                request(apiURL+'/course', function (error, response, body) 
                 {
                     var course=JSON.parse(body);
                     var cards = [];
@@ -76,25 +81,75 @@ bot.dialog('survey', [
                             .title(course[i].coursetitle)
                             .subtitle('Description')
                             .text(course[i].coursedesc)
-                            .images([builder.CardImage.create(session, '/home/knolly/Documents/Training/Projects/botinit/api/core-CreateNewConversation/res/1.png')])
+                            .images([builder.CardImage.create(session, '/home/knolly/Documents/Training/Projects/botinit/api/core-CreateNewConversation/res/1.png')
+                            ])
+                            .buttons([builder.CardAction.postBack(session, '/register ' + JSON.stringify({"id":course[i].courseid, "title":course[i].coursetitle}) , 'Register')])
                         );
                     }
                     var reply = new builder.Message(session)
                     .attachmentLayout(builder.AttachmentLayout.carousel)
                     .attachments(cards);
-                    session.send(reply);  
+                    session.send(reply);
+
                 });
             break;
         }
     },
     function (session, results) {
-        session.userData.coding = results.response;
-        builder.Prompts.choice(session, 'What language do you code Node using? ', ['JavaScript', 'CoffeeScript', 'TypeScript']);
+        session.userData.courses.push(results.response);
+        var obj = JSON.parse(results.response.substring(10));
+        builder.Prompts.text(session, 'Congratulations you have registered for ' + obj.title);
+        builder.Prompts.text(session, 'You will start receiving contents soon...');
+        var options = { method: 'POST',
+          url: 'http://localhost:3000/invol/create',
+          headers: 
+           { 'postman-token': '7446ba9b-7663-924e-5ae3-f97a5d580eb1',
+             'cache-control': 'no-cache',
+             'content-type': 'application/x-www-form-urlencoded' },
+          form: { body: '{"courseid": '+obj.id+', "userid": '+randomid+'}' } };
+
+        request(options, function (error, response, body) {
+          if (error) throw new Error(error);
+          console.log(body);
+        });
+
     },
     function (session, results) {
-        session.userData.language = results.response.entity;
-        session.endDialog('Got it... ' + session.userData.name +
-            ' you\'ve been programming for ' + session.userData.coding +
-            ' years and use ' + session.userData.language + '.');
+        cron.schedule('*/1 * * * *', function(){
+          console.log('running a task every minute');
+          request(apiURL+'/invol/'+randomid, function (error, response, body) 
+            {
+                var invol=JSON.parse(body);
+                for(var i=0;i<invol.length;i++) //run over all involvements
+                {
+                    
+                    if(invol[i].messageQueue[0]!=undefined)
+                    {
+                        var msgTime = moment(invol[i].messageQueue[0].time);
+                        var currenttime = moment();
+                        if(msgTime.isSameOrBefore(currenttime))
+                        {
+                            console.log('Invol No.' + invol[i].involvementno);
+                            var contentid = invol[i].messageQueue[0].contentno;
+                            var courseid = invol[i].courseid;
+                            var userid = invol[i].userid;
+                            //Post to contentno to userid
+
+
+                            invol[i].messageQueue.shift(1); //deleted the sent content from queue
+                            var stringified = JSON.stringify(invol[i]);
+                            request.post({
+                              headers: {'content-type' : 'application/x-www-form-urlencoded'},
+                              url:     apiURL+'/invol/update',
+                              body:    "body="+stringified
+                            }, function(error, response, body){
+                              console.log("\n");
+                            });
+                        }
+                    }
+                    
+                }  
+            });
+        });
     }
 ]);
