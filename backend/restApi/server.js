@@ -4,9 +4,11 @@ var express = require('express'),
   mongoose = require('mongoose'),
   Task = require('./api/models/model'),
   bodyParser = require('body-parser');
-  
+
+var DBURL = 'mongodb://localhost:27017/knolbot';
+
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/knolbot'); 
+mongoose.connect(DBURL); 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

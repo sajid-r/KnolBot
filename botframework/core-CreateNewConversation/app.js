@@ -81,7 +81,7 @@ bot.dialog('survey', [
                             .title(course[i].coursetitle)
                             .subtitle('Description')
                             .text(course[i].coursedesc)
-                            .images([builder.CardImage.create(session, '/home/knolly/Documents/Training/Projects/botinit/api/core-CreateNewConversation/res/1.png')
+                            .images([builder.CardImage.create(session, './res/1.png')
                             ])
                             .buttons([builder.CardAction.postBack(session, '/register ' + JSON.stringify({"id":course[i].courseid, "title":course[i].coursetitle}) , 'Register')])
                         );
@@ -104,7 +104,7 @@ bot.dialog('survey', [
         
         var options = 
         { method: 'POST',
-          url: 'http://localhost:3000/invol/create',
+          url: apiURL + '/invol/create',
           headers: 
             { 'postman-token': '7446ba9b-7663-924e-5ae3-f97a5d580eb1',
              'cache-control': 'no-cache',

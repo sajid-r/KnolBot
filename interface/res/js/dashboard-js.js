@@ -2,6 +2,8 @@ $(document).ready(showContent);
 
 var courseidReceived;
 
+var apiURL = "http://localhost:3000";
+var httpURL = "http://localhost:8080";
 
 var cardTemplate = $("#scrollable-template").detach();
 
@@ -16,7 +18,7 @@ var populateContent = function() {
  var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost:3000/course/" + courseidReceived,
+    "url": apiURL +  "/course/" + courseidReceived,
     "method": "GET",
     "headers": {
     "cache-control": "no-cache",
@@ -101,7 +103,7 @@ function addCourse_submit(obj) {
     var settings2 = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:3000/content/update",
+        "url": apiURL + "/content/update",
         "method": "POST",
         "headers": {
         "content-type": "application/x-www-form-urlencoded",

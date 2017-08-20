@@ -2,8 +2,10 @@ $(document).ready(docReadyStuffs);
 
 var cardTemplate = $("#course-card-template").detach();
 
+var apiURL = "http://localhost:3000";
+var httpURL = "http://localhost:8080";
 
-
+var randomid = Math.floor((Math.random() * 999) + 100);
 
 function docReadyStuffs(){
     populateCourses();
@@ -14,7 +16,7 @@ var populateCourses = function() {
 var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "http://localhost:3000/course",
+  "url": apiURL + "/course",
   "method": "GET",
   "headers": {
     "content-type": "application/x-www-form-urlencoded",
@@ -64,12 +66,12 @@ function addNewCourse_submit(){
     var coursename = $("#input-desc").val();
     var description = $("#course-desc").val();
     
-    var newCourse = {"courseid":0, "coursetitle":coursename, "coursedesc":description};
+    var newCourse = {"courseid":randomid, "coursetitle":coursename, "coursedesc":description};
     
     var settings3 = {
       "async": true,
       "crossDomain": true,
-      "url": "http://localhost:3000/course/create",
+      "url": apiURL + "/course/create",
       "method": "POST",
       "headers": {
         "content-type": "application/x-www-form-urlencoded",
@@ -93,5 +95,5 @@ function goToCourse(cid){
     var courseid = cid;
     window.localStorage.setItem( 'objectToPass', courseid );
     //alert(courseid);
-    window.location.href = "http://localhost:8080/dashboard";
+    window.location.href = httpURL+ "/dashboard";
 }
