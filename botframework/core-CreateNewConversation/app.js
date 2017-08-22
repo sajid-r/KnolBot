@@ -6,8 +6,10 @@ var restify = require('restify');
 var request = require('request');
 var moment = require('moment');
 var cron = require('node-cron');
+var path = require('path');
+var webshot = require('webshot');
 
-const apiURL = "http://localhost:3000";
+const apiURL = "http://labsdev.knolskape.com:8081";
 var randomid = Math.floor((Math.random() * 9999999) + 1000000);
 commands = ['/courses','enrol']
 // Setup Restify Server
@@ -29,6 +31,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
     var address = session.message.address;
     userStore.push(address);
     session.userData.courses = [];
+    session.send("Bot says Welcome");
     // end current dialog
     session.endDialog('Hi welcome to KnolBot :)');
 });
@@ -38,7 +41,7 @@ setInterval(function () {
     var newAddresses = userStore.splice(0);
     newAddresses.forEach(function (address) {
 
-        console.log('Starting survey for address:', address);
+        console.log('Starting dialog for address:', address);
 
         // new conversation address, copy without conversationId
         var newConversationAddress = Object.assign({}, address);
@@ -63,15 +66,16 @@ bot.dialog('survey', [
     },
     function (session, results) {
         session.userData.name = results.response;
-        builder.Prompts.text(session, 'Hi ' + results.response + ', Type a command (type /help for a list of commands)');
+        builder.Prompts.text(session, 'Hi ' + results.response + ', Here are the ');
     },
     function (session, results) {
         var res = results.response;
         switch(res){
             case("/courses"):
-                builder.Prompts.text(session, 'Hi ' + session.userData.name + ', These are the available courses: ');
+                //builder.Prompts.text(session, 'Hi ' + session.userData.name + ', These are the available courses: ');
                 request(apiURL+'/course', function (error, response, body) 
                 {
+                    builder.Prompts.text(session, 'Hi ' + session.userData.name + ', These are the available courses: ');
                     var course=JSON.parse(body);
                     var cards = [];
                     for (var i=0;i<course.length;i++)
@@ -81,7 +85,7 @@ bot.dialog('survey', [
                             .title(course[i].coursetitle)
                             .subtitle('Description')
                             .text(course[i].coursedesc)
-                            .images([builder.CardImage.create(session, './res/1.png')
+                            .images([builder.CardImage.create(session, path.resolve('./res/1.png'))
                             ])
                             .buttons([builder.CardAction.postBack(session, '/register ' + JSON.stringify({"id":course[i].courseid, "title":course[i].coursetitle}) , 'Register')])
                         );
@@ -154,29 +158,35 @@ bot.dialog('survey', [
                                 if(response.docurl != undefined)
                                     doc = response.docurl;
 
-                                console.log("Before deleting: " + currentinvol.messageQueue);
-                                currentinvol.messageQueue.shift(1); //deleted the sent content from queue
-                                var stringified = JSON.stringify(currentinvol);
-                                console.log("After deleting: " + currentinvol.messageQueue);
+                                webshot(link,'link.png', function(err){
+                                    if(err)
+                                        console.log(err);
+                                    currentinvol.messageQueue.shift(1); //deleted the sent content from queue
+                                    var stringified = JSON.stringify(currentinvol);
 
-                                var options2 = 
-                                { method: 'POST',
-                                  url: apiURL+'/invol/obj/' + objid,
-                                  headers: 
-                                   { 'postman-token': '1e0c16f5-f86e-791b-57be-cf064ccbe1d8',
-                                     'cache-control': 'no-cache',
-                                     'content-type': 'application/x-www-form-urlencoded' },
-                                  form: { body:  stringified } 
-                                };
+                                    var options2 = 
+                                    { method: 'POST',
+                                      url: apiURL+'/invol/obj/' + objid,
+                                      headers: 
+                                       { 'postman-token': '1e0c16f5-f86e-791b-57be-cf064ccbe1d8',
+                                         'cache-control': 'no-cache',
+                                         'content-type': 'application/x-www-form-urlencoded' },
+                                      form: { body:  stringified } 
+                                    };
 
-                                request(options2, function (error, response, body) {
-                                  if (error) throw new Error(error);
+                                    request(options2, function (error, response, body) {
+                                      if (error) throw new Error(error);
 
-                                  console.log(body);
-                                });
+                                      console.log(body);
+                                    });
 
-                                //send to chatbot
-                                builder.Prompts.text(session, contentdesc + ' ' + link + ' ' + doc);
+                                    //send to chatbot
+                                    var card2 = createHeroCard(session,link,doc,contentdesc);
+                                    // attach the card to the reply message
+                                    var msg2 = new builder.Message(session).addAttachment(card2);
+                                    session.send(msg2);
+                                    });
+ 
                             });
                         }
                     }
@@ -190,3 +200,11 @@ bot.dialog('survey', [
 
     }
 ]);
+
+function createHeroCard(session,link,doc,contentdesc) {
+    return new builder.HeroCard(session)
+        .text(contentdesc + '\n' + doc)
+        .images([
+            builder.CardImage.create(session, path.resolve('./link.png'))
+        ]);
+}
