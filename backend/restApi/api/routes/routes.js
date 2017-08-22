@@ -4,6 +4,9 @@ var handlebars = require('handlebars');
 var fs = require('fs');
 var express = require("express");
 var app = express();
+var path = require('path');
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 module.exports = function(app) {
@@ -81,11 +84,13 @@ module.exports = function(app) {
                 //////////////////
 
   app.get("/", function(req, res){
-    res.sendfile("../../../../interface/index.html");
+    //res.sendfile("../../../../interface/index.html");
+    res.sendFile(path.join(__dirname,'public/index.html'));
   });
 
 
-  app.get("/dashboard", function(req, res){
-    res.sendfile("../../../../interface/dashboard.html");
+  app.get("/knolbot/dashboard", function(req, res){
+    //res.sendfile("../../../../interface/dashboard.html");
+    res.sendFile(path.join(__dirname,'public/dashboard.html'));
   });
 };

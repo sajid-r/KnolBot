@@ -1,0 +1,19 @@
+{
+	"_id" : ObjectId("59801662b9dfff6c8a46a499"),
+	"adminid" : 1,
+	"password" : "knolly",
+	"username" : "admin"
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5981c529638d441ffc774e09"),
+	"adminid" : NumberInt("5"),
+	"password" : "abc",
+	"username" : "admin2"
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5981d8a18b55e936d5394351"),
+	"adminid" : NumberInt("2"),
+	"password" : "Advanced"
+},

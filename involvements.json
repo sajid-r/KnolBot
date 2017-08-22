@@ -1,0 +1,361 @@
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("59934e2cdf35a00d676ac3b4"),
+	"courseid" : NumberInt("1"),
+	"involvementno" : NumberInt("1"),
+	"messageQueue" : [
+		{
+			"time" : "2017-08-15T19:43:28.220Z",
+			"contentno" : NumberInt("2")
+		},
+		{
+			"time" : "2017-08-15T20:41:28.220Z",
+			"contentno" : NumberInt("3")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-16T01:10:28.211+05:30"),
+	"userid" : NumberInt("2")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("59934e34df35a00d676ac3b5"),
+	"courseid" : NumberInt("1"),
+	"involvementno" : NumberInt("2"),
+	"messageQueue" : [
+		{
+			"time" : "2017-08-15T19:43:36.398Z",
+			"contentno" : NumberInt("2")
+		},
+		{
+			"time" : "2017-08-15T20:41:36.398Z",
+			"contentno" : NumberInt("3")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-16T01:10:36.396+05:30"),
+	"userid" : NumberInt("2")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("59934e38df35a00d676ac3b6"),
+	"courseid" : NumberInt("1"),
+	"involvementno" : NumberInt("3"),
+	"messageQueue" : [
+		{
+			"time" : "2017-08-15T19:43:40.826Z",
+			"contentno" : NumberInt("2")
+		},
+		{
+			"time" : "2017-08-15T20:41:40.826Z",
+			"contentno" : NumberInt("3")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-16T01:10:40.823+05:30"),
+	"userid" : NumberInt("2")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("59934e3cdf35a00d676ac3b7"),
+	"courseid" : NumberInt("1"),
+	"involvementno" : NumberInt("4"),
+	"messageQueue" : [
+		{
+			"time" : "2017-08-15T19:43:44.652Z",
+			"contentno" : NumberInt("2")
+		},
+		{
+			"time" : "2017-08-15T20:41:44.652Z",
+			"contentno" : NumberInt("3")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-16T01:10:44.651+05:30"),
+	"userid" : NumberInt("2")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("59934e41df35a00d676ac3b8"),
+	"courseid" : NumberInt("1"),
+	"involvementno" : NumberInt("5"),
+	"messageQueue" : [
+		{
+			"time" : "2017-08-15T19:43:49.340Z",
+			"contentno" : NumberInt("2")
+		},
+		{
+			"time" : "2017-08-15T20:41:49.341Z",
+			"contentno" : NumberInt("3")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-16T01:10:49.339+05:30"),
+	"userid" : NumberInt("2")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("59934e5bdf35a00d676ac3b9"),
+	"courseid" : NumberInt("1"),
+	"involvementno" : NumberInt("6"),
+	"messageQueue" : [
+		{
+			"time" : "2017-08-15T19:44:15.876Z",
+			"contentno" : NumberInt("2")
+		},
+		{
+			"time" : "2017-08-15T20:42:15.876Z",
+			"contentno" : NumberInt("3")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-16T01:11:15.874+05:30"),
+	"userid" : NumberInt("2")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5999944173df74030e348bb6"),
+	"courseid" : NumberInt("2"),
+	"involvementno" : NumberInt("10"),
+	"messageQueue" : [
+		{
+			"time" : ISODate("2017-08-20T19:23:05.277+05:30"),
+			"contentno" : NumberInt("1")
+		},
+		{
+			"time" : ISODate("2017-08-20T19:23:05.281+05:30"),
+			"contentno" : NumberInt("2")
+		},
+		{
+			"time" : ISODate("2017-09-11T16:33:05.281+05:30")
+		},
+		{
+			"time" : ISODate("2017-09-11T16:33:05.281+05:30")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-20T19:23:05.260+05:30"),
+	"userid" : NumberInt("2")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("599994fc73df74030e348bb7"),
+	"courseid" : NumberInt("2"),
+	"messageQueue" : [
+		{
+			"time" : ISODate("2017-08-20T19:26:12.941+05:30"),
+			"contentno" : NumberInt("1")
+		},
+		{
+			"time" : ISODate("2017-08-20T19:26:12.941+05:30"),
+			"contentno" : NumberInt("2")
+		},
+		{
+			"time" : ISODate("2017-09-11T16:36:12.941+05:30")
+		},
+		{
+			"time" : ISODate("2017-09-11T16:36:12.942+05:30")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-20T19:26:12.940+05:30"),
+	"userid" : NumberInt("8660554")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("59999aa4876f4506fff14321"),
+	"courseid" : NumberInt("2"),
+	"messageQueue" : [
+		{
+			"time" : ISODate("2017-08-20T19:50:20.995+05:30"),
+			"contentno" : NumberInt("1")
+		},
+		{
+			"time" : ISODate("2017-08-20T19:50:20.998+05:30"),
+			"contentno" : NumberInt("2")
+		},
+		{
+			"time" : ISODate("2017-09-11T17:00:20.998+05:30")
+		},
+		{
+			"time" : ISODate("2017-09-11T17:00:20.999+05:30")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-20T19:50:20.992+05:30"),
+	"userid" : NumberInt("4660128")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5999dbdbb3e0ee2c27447f71"),
+	"courseid" : NumberInt("2"),
+	"messageQueue" : [
+		{
+			"time" : ISODate("2017-08-21T00:28:35.366+05:30"),
+			"contentno" : NumberInt("1")
+		},
+		{
+			"time" : ISODate("2017-08-21T00:29:35.369+05:30"),
+			"contentno" : NumberInt("2")
+		},
+		{
+			"time" : ISODate("2017-08-21T00:30:35.369+05:30")
+		},
+		{
+			"time" : ISODate("2017-08-21T00:31:35.369+05:30")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-21T00:28:35.360+05:30"),
+	"userid" : NumberInt("10476519")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5999e034b3e0ee2c27447f72"),
+	"courseid" : NumberInt("2"),
+	"messageQueue" : [
+		{
+			"time" : ISODate("2017-08-21T00:47:08.937+05:30"),
+			"contentno" : NumberInt("1")
+		},
+		{
+			"time" : ISODate("2017-08-21T00:48:08.938+05:30"),
+			"contentno" : NumberInt("2")
+		},
+		{
+			"time" : ISODate("2017-08-21T00:49:08.938+05:30")
+		},
+		{
+			"time" : ISODate("2017-08-21T00:50:08.938+05:30")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-21T00:47:08.935+05:30"),
+	"userid" : NumberInt("6797626")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5999e0e5b3e0ee2c27447f73"),
+	"courseid" : NumberInt("2"),
+	"messageQueue" : [
+		{
+			"time" : ISODate("2017-08-21T00:50:05.041+05:30"),
+			"contentno" : NumberInt("1")
+		},
+		{
+			"time" : ISODate("2017-08-21T00:51:05.041+05:30"),
+			"contentno" : NumberInt("2")
+		},
+		{
+			"time" : ISODate("2017-08-21T00:52:05.041+05:30")
+		},
+		{
+			"time" : ISODate("2017-08-21T00:53:05.041+05:30")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-21T00:50:05.039+05:30"),
+	"userid" : NumberInt("2395943")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5999e1ceb3e0ee2c27447f74"),
+	"courseid" : NumberInt("2"),
+	"messageQueue" : [
+		{
+			"time" : ISODate("2017-08-21T00:53:58.024+05:30"),
+			"contentno" : NumberInt("1")
+		},
+		{
+			"time" : ISODate("2017-08-21T00:54:58.025+05:30"),
+			"contentno" : NumberInt("2")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-21T00:53:58.022+05:30"),
+	"userid" : NumberInt("7092665")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5999e216b3e0ee2c27447f75"),
+	"courseid" : NumberInt("2"),
+	"messageQueue" : [
+		{
+			"time" : ISODate("2017-08-21T00:55:10.409+05:30"),
+			"contentno" : NumberInt("1")
+		},
+		{
+			"time" : ISODate("2017-08-21T00:56:10.409+05:30"),
+			"contentno" : NumberInt("2")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-21T00:55:10.408+05:30"),
+	"userid" : NumberInt("7220138")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5999e476b3e0ee2c27447f76"),
+	"courseid" : NumberInt("2"),
+	"messageQueue" : [
+		{
+			"time" : ISODate("2017-08-21T01:05:18.917+05:30"),
+			"contentno" : NumberInt("1")
+		},
+		{
+			"time" : ISODate("2017-08-21T01:06:18.917+05:30"),
+			"contentno" : NumberInt("2")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-21T01:05:18.916+05:30"),
+	"userid" : NumberInt("10635397")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5999ecd6b3e0ee2c27447f77"),
+	"courseid" : NumberInt("2"),
+	"messageQueue" : [
+		{
+			"time" : "2017-08-20T20:12:02.245Z",
+			"contentno" : NumberInt("2")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-21T01:41:02.243+05:30"),
+	"userid" : NumberInt("8516894")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5999f6600fee203f0671a531"),
+	"courseid" : NumberInt("2"),
+	"messageQueue" : [
+		{
+			"time" : ISODate("2017-08-21T02:21:44.452+05:30"),
+			"contentno" : NumberInt("1")
+		},
+		{
+			"time" : ISODate("2017-08-21T02:22:44.457+05:30"),
+			"contentno" : NumberInt("2")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-21T02:21:44.444+05:30"),
+	"userid" : NumberInt("10870955")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5999f78a0fee203f0671a532"),
+	"courseid" : NumberInt("2"),
+	"messageQueue" : [
+		{
+			"time" : ISODate("2017-08-21T02:26:42.027+05:30"),
+			"contentno" : NumberInt("1")
+		},
+		{
+			"time" : ISODate("2017-08-21T02:27:42.027+05:30"),
+			"contentno" : NumberInt("2")
+		}
+	],
+	"subscriptiontime" : ISODate("2017-08-21T02:26:42.025+05:30"),
+	"userid" : NumberInt("9596851")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5999f86e0fee203f0671a533"),
+	"courseid" : NumberInt("2"),
+	"messageQueue" : [ ],
+	"subscriptiontime" : ISODate("2017-08-21T02:30:30.031+05:30"),
+	"userid" : NumberInt("7676581")
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5999f9e90fee203f0671a534"),
+	"courseid" : NumberInt("2"),
+	"messageQueue" : [ ],
+	"subscriptiontime" : ISODate("2017-08-21T02:36:49.441+05:30"),
+	"userid" : NumberInt("2499701")
+},

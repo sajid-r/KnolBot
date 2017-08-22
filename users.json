@@ -1,0 +1,78 @@
+{
+	"_id" : ObjectId("598015b9b9dfff6c8a46a495"),
+	"age" : NumberInt("50"),
+	"courses_completed" : [
+		1,
+		2
+	],
+	"current_courses" : [
+		3
+	],
+	"organization" : "Hollywood",
+	"userid" : NumberInt("1"),
+	"username" : "Phil Dunphy"
+},
+{
+	"_id" : ObjectId("598015cbb9dfff6c8a46a496"),
+	"age" : 45,
+	"courses_completed" : [ ],
+	"current_courses" : [ ],
+	"organization" : "Hollywood",
+	"userid" : 2,
+	"username" : "Alex Dunphy"
+},
+{
+	"_id" : ObjectId("598015f2b9dfff6c8a46a497"),
+	"age" : 25,
+	"courses_completed" : [ ],
+	"current_courses" : [ ],
+	"organization" : "Hollywood",
+	"userid" : 3,
+	"username" : "Hailey Dunphy"
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5981b7be8b66fa1b93fd3198"),
+	"courses_completed" : [ ],
+	"current_courses" : [ ],
+	"userid" : NumberInt("5"),
+	"username" : "Sajid"
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5981b7f1dc651b1bdd51ca92"),
+	"courses_completed" : [ ],
+	"current_courses" : [ ],
+	"userid" : NumberInt("5"),
+	"username" : "Sajid"
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5981b907bd87a71c51957ad6"),
+	"courses_completed" : [ ],
+	"current_courses" : [ ],
+	"userid" : NumberInt("5"),
+	"username" : "Sajid"
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5981c20d1226ca1f3475c6e7"),
+	"courses_completed" : [ ],
+	"current_courses" : [ ],
+	"userid" : NumberInt("5"),
+	"username" : "Sajid"
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5981c355e3f99d1fc42b808f"),
+	"courses_completed" : [ ],
+	"current_courses" : [ ],
+	"userid" : NumberInt("5"),
+	"username" : "Sajid"
+},
+{
+	"__v" : NumberInt("0"),
+	"_id" : ObjectId("5981d5338b55e936d538fa82"),
+	"age" : NumberInt("52"),
+	"userid" : NumberInt("1")
+},

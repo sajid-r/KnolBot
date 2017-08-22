@@ -46,12 +46,10 @@
       "defaultValue": "6.9.5"
     },
     "MICROSOFT_APP_ID": {
-      "type":"string",
-      "defaultValue": "a489e4fa-5bb0-49db-a5aa-b429683b2b5f"
+      "type":"string"
     },
     "MICROSOFT_APP_PASSWORD": {
-      "type":"string",
-      "defaultValue": "Jroscx86C1jvX8x3JeOcjbK"
+      "type":"string"
     }
   },
   "resources": [
