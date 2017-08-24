@@ -1,0 +1,35 @@
+{
+  "name": "botbuilder-sample-createnewconversation",
+  "version": "1.0.0",
+  "description": "Bot Builder Sample - Create New Conversation",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Microsoft Corp.",
+  "license": "MIT",
+  "keywords": [
+    "botbuilder",
+    "bots",
+    "chatbots",
+    "botbuilder-samples"
+  ],
+  "bugs": {
+    "url": "https://github.com/Microsoft/BotBuilder-Samples/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Microsoft/BotBuilder-Samples.git"
+  },
+  "dependencies": {
+    "botbuilder": "^3.8.2",
+    "botbuilder-azure": "^3.0.2",
+    "dotenv-extended": "^1.0.4",
+    "fs": "0.0.1-security",
+    "moment": "2.18.1",
+    "node-cron": "1.2.1",
+    "path": "0.12.7",
+    "request": "2.81.0",
+    "restify": "^4.3.0",
+    "webshot": "0.18.0"
+  }
+}

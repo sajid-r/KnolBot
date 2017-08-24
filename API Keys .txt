@@ -1,0 +1,29 @@
+Slack:
+-----
+
+Client ID: 2319954278.229959876112
+Client Secret: f3b13b5aa5feecda1eb2f5aab638c024
+Verification Token: qrdHRgC9Tr6TD5AN19rDkJQu
+
+
+Kik
+---
+Bot name: knolbot
+API Key: 58df3e69-b0dc-4cdc-998f-c910843da0a4
+
+
+Bing
+----
+
+Display name: knolbot
+Long Description: A bot that delivers bite-sized feed to subscribers across several channels.
+Bot Website: www.knolskape.com (can we?)
+
+Bot Category: 
+Tags: knolskape, knol, bite sized, education, productivity
+
+Publisher Name: Sajid Rahman
+Publisher Email: mail.sajidrahman@gmail.com
+Publisher Phone: +918308835600
+
+
